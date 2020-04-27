@@ -2,10 +2,12 @@
 
 ### run 実行後に実施すること
 # データベースクラスタ作成
+```
 su - postgres -c initdb
 su - postgres -c cp -p /db/work/postgresql.conf /db/pgdata/
 su - postgres -c pg_ctl start
 su - postgres -c psql -d postgres -c "CREATE EXTENSION pg_stat_statements"
+```
 
 # snapshot作成
 su - postgres -c psql -d postgres -c "select statsinfo.snapshot('manual')"
