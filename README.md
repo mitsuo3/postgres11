@@ -41,3 +41,19 @@ PostgreSQL on CentOS 7.6 が導入されている環境のイメージが作成�
 
 * `http://localhost:8080/pg_stats_reporter/pg_stats_reporter.php`  
 pg_stat_reporterが確認できるはず
+
+## Grafaraの自動起動
+* `systemctl daemon-reload`  
+* `systemctl enable grafana-server`  
+* `systemctl start grafana-server`  
+* `systemctl status grafana-server`  
+
+## Prometheusの起動
+* `cd /usr/local/src/prometheus/prometheus-server`  
+* `nohup ./prometheus &`  
+
+## node_exporterの起動
+* `cd /usr/local/src/prometheus/node_exporter`  
+* `nohup ./node_exporter &`  
+
+
