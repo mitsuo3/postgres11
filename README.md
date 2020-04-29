@@ -16,30 +16,26 @@ PostgreSQL on CentOS 7.6 が導入されている環境のイメージが作成�
 ## コンテナ内へ接続する
 * `docker ps | grep postgres11`  
 コンテナのID（Container ID）を確認する  
-* `docker exec -it [Container ID] /bin/bash`  
+* `docker exec -it postgres11 /bin/bash`  
 コンテナ内にログインする  
 
-## データベースクラスタ作成
+## データベースクラスタ作成（Dockerfileに組み込み済）
 * `su - postgres -c initdb`  
 * `su - postgres -c cp -p /db/work/postgresql.conf /db/pgdata/`  
 * `su - postgres -c pg_ctl start`  
 * `su - postgres -c psql -d postgres -c "CREATE EXTENSION pg_stat_statements"`  
  
 ## snapshot作成
-
 * `su - postgres -c psql -d postgres -c "select statsinfo.snapshot('manual')"`  
 * `su - postgres -c psql -d postgres -c "select statsinfo.snapshot('manual')"`  
 
 ## pg_stats_reporter設定
-
-* `cp -p /db/work/pg_stats_reporter.ini /etc/`  
 * `systemctl daemon-reload`  
 * `systemctl enable httpd`  
 * `systemctl start httpd`  
 
 ## pg_stat_reporterのURL
-
-* `http://localhost:8080/pg_stats_reporter/pg_stats_reporter.php`  
+* `http://localhost:10080/pg_stats_reporter/pg_stats_reporter.php`  
 pg_stat_reporterが確認できるはず
 
 ## Grafaraの自動起動
@@ -55,5 +51,3 @@ pg_stat_reporterが確認できるはず
 ## node_exporterの起動
 * `cd /usr/local/src/prometheus/node_exporter`  
 * `nohup ./node_exporter &`  
-
-

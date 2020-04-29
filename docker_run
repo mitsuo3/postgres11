@@ -6,7 +6,6 @@ docker run --privileged \
      -p 19090:9090 \
      -p 13000:3000 \
      -p 15432:5432 \
-     -v /Users/mitsuo3/repository/postgres/docker_pgdata:/db/pgdata \
      -v /Users/mitsuo3/repository/postgres/docker_work:/db/work \
      --name postgres11 \
      postgres11 \
