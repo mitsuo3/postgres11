@@ -49,6 +49,7 @@ RUN yum -y install wget \
  && cd /usr/local/src/prometheus \
  && wget https://github.com/prometheus/prometheus/releases/download/v2.3.2/prometheus-2.3.2.linux-amd64.tar.gz \
  && tar zxvf prometheus-2.3.2.linux-amd64.tar.gz \
+ && rm -f prometheus-2.3.2.linux-amd64.tar.gz \
  && mv prometheus-2.3.2.linux-amd64 prometheus-server
 COPY --chown=root:root template/prometheus.yml /usr/local/src/prometheus/prometheus-server/prometheus.yml
 
@@ -56,5 +57,15 @@ COPY --chown=root:root template/prometheus.yml /usr/local/src/prometheus/prometh
 RUN cd /usr/local/src/prometheus \
  && wget https://github.com/prometheus/node_exporter/releases/download/v0.16.0/node_exporter-0.16.0.linux-amd64.tar.gz \
  && tar zxvf node_exporter-0.16.0.linux-amd64.tar.gz \
+ && rm -f node_exporter-0.16.0.linux-amd64.tar.gz \
  && mv node_exporter-0.16.0.linux-amd64 node_exporter
+
+# postgres_exporter install
+RUN cd /usr/local/src/prometheus \
+ && wget https://github.com/wrouesnel/postgres_exporter/releases/download/v0.8.0/postgres_exporter_v0.8.0_linux-amd64.tar.gz \
+ && tar zxvf postgres_exporter_v0.8.0_linux-amd64.tar.gz \
+ && rm -f postgres_exporter_v0.8.0_linux-amd64.tar.gz \
+ && mv node_exporter-0.16.0.linux-amd64 node_exporter
+
+
 
