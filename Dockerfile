@@ -67,6 +67,6 @@ RUN yum -y install wget \
  && chown postgres. postgres_exporter/postgres_exporter
 COPY --chown=root:root template/prometheus.yml /usr/local/src/prometheus/prometheus-server/prometheus.yml
 
-COPY --chown=root:root template/startup.sh /root/startup.sh
+COPY --chown=root:root template/startup.sh /startup.sh
 COPY --chown=postgres:postgres template/startup_postgres.sh /home/postgres/startup_postgres.sh
 RUN  chmod +x /root/startup.sh && chmod +x /home/postgres/startup_postgres.sh
