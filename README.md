@@ -14,41 +14,18 @@ PostgreSQL on CentOS 7.6 が導入されている環境のイメージが作成�
 
 # run 実行後に実施すること
 ## コンテナ内へ接続する
-* `docker ps | grep postgres11`  
+`docker ps | grep postgres11`  
 コンテナのID（Container ID）を確認する  
-* `docker exec -it postgres11 /bin/bash`  
+`docker exec -it postgres11 /bin/bash`  
 コンテナ内にログインする  
 
-## データベースクラスタ作成（Dockerfileに組み込み済）
-* `su - postgres -c initdb`  
-* `su - postgres -c cp -p /db/work/postgresql.conf /db/pgdata/`  
-* `su - postgres -c pg_ctl start`  
-* `su - postgres -c psql -d postgres -c "CREATE EXTENSION pg_stat_statements"`  
-
-## snapshot作成
-* `su - postgres -c psql -d postgres -c "select statsinfo.snapshot('manual')"`  
-* `su - postgres -c psql -d postgres -c "select statsinfo.snapshot('manual')"`  
-
-## pg_stats_reporter設定
-* `systemctl daemon-reload`  
-* `systemctl enable httpd`  
-* `systemctl start httpd`  
+## 初期設定様のコマンドを実行する
+`./startup.sh`
 
 ## pg_stat_reporterのURL
-* `http://localhost:10080/pg_stats_reporter/pg_stats_reporter.php`  
+`http://localhost:10080/pg_stats_reporter/pg_stats_reporter.php`  
 pg_stat_reporterが確認できるはず
 
-## Grafaraの自動起動
-* `systemctl daemon-reload`  
-* `systemctl enable grafana-server`  
-* `systemctl start grafana-server`  
-* `systemctl status grafana-server`  
+## GrafaraのDatasourceとしてPrometheusを追加
 
-## Prometheusの起動
-* `nohup /usr/local/src/prometheus/prometheus-server/prometheus &`  
-
-## node_exporterの起動
-* `nohup /usr/local/src/prometheus/node_exporter/node_exporter &`  
-
-## postgres_exporterの起動
-* `nohup su - postgres -c /usr/local/src/prometheus/postgres_exporter/postgres_exporter &`  
+## Grafanaのダッシュボードで、11376をインポートする

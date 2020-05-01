@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+@echo off
 
 ## PostgreSQL Start 
 su - postgres -c /home/postgres/startup_postgres.sh
