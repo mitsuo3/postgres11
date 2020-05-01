@@ -1,9 +1,11 @@
 docker run --privileged \
      -h postgres11 \
      -d \
+     -p 10022:22 \
      -p 10080:80 \
      -p 19100:9100 \
      -p 19090:9090 \
+     -p 19187:9187 \
      -p 13000:3000 \
      -p 15432:5432 \
      -v /Users/mitsuo3/repository/postgres/docker_work:/db/work \

@@ -24,7 +24,7 @@ PostgreSQL on CentOS 7.6 が導入されている環境のイメージが作成�
 * `su - postgres -c cp -p /db/work/postgresql.conf /db/pgdata/`  
 * `su - postgres -c pg_ctl start`  
 * `su - postgres -c psql -d postgres -c "CREATE EXTENSION pg_stat_statements"`  
- 
+
 ## snapshot作成
 * `su - postgres -c psql -d postgres -c "select statsinfo.snapshot('manual')"`  
 * `su - postgres -c psql -d postgres -c "select statsinfo.snapshot('manual')"`  
@@ -45,9 +45,10 @@ pg_stat_reporterが確認できるはず
 * `systemctl status grafana-server`  
 
 ## Prometheusの起動
-* `cd /usr/local/src/prometheus/prometheus-server`  
-* `nohup ./prometheus &`  
+* `nohup /usr/local/src/prometheus/prometheus-server/prometheus &`  
 
 ## node_exporterの起動
-* `cd /usr/local/src/prometheus/node_exporter`  
-* `nohup ./node_exporter &`  
+* `nohup /usr/local/src/prometheus/node_exporter/node_exporter &`  
+
+## postgres_exporterの起動
+* `nohup su - postgres -c /usr/local/src/prometheus/postgres_exporter/postgres_exporter &`  
