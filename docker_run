@@ -1,5 +1,5 @@
 docker run --privileged \
-     -h postgres11 \
+     -h manager \
      -d \
      -p 10022:22 \
      -p 10080:80 \
@@ -9,6 +9,6 @@ docker run --privileged \
      -p 13000:3000 \
      -p 15432:5432 \
      -v /Users/mitsuo3/repository/postgres/docker_work:/db/work \
-     --name postgres11 \
-     postgres11 \
+     --name manager_container \
+     centos76_base \
      /sbin/init
